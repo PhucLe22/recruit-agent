@@ -1,0 +1,81 @@
+EDUCATION
+
+INFORMATION SYSTEM
+
+2022 Now
+
+EXPERIENCE
+
+WEBSITE SPECIALIZING IN SELLING
+ACCESSORIES FOR MEN
+
+31/10/2024 - 4/11/2024
+ACTIVATE
+VOLUNTEER
+
+19/7/2024 - 11/9/2024
+SKILL
+
+-Programming Languages: java, R
+-ERP system: odoo
+-Backend: springboot
+
+-English: Ability to read and understand documents
+
+and communicate in English
+-Japanese: elementary level
+
+1/3/2004
+0588567583
+
+github:https://github.com/Afo-FPT
+
+Testing Intern/Business Analyst Intern
+2 Male
+M™ quanhse182337@fpt.edu.vn
+9
+
+Hiep Binh Chanh, Thu Duc
+
+FPT UNIVERSITY
+
+major: Information systems
+
+Develope a website to sell men's accessories
+
+Github link: https://github.com/Afo-FPT/BE-Elden-Ring-Project
+Number of members: 5
+
+Technology used:
+
+Backend: Login google, jwt, paypal, springboot
+
+Adjustment function:
+
++Create an account, log in, purchase, pay
+
++Manage products, orders, users, blogs
+
+PROJECT: FOSTERING KNOWLEDGE AND SKILLS IN APPLYING
+INFORMATION AND COMMUNICATION TECHNOLOGY ON SOCIAL
+NETWORKS
+
+* Develop an information technology skills training program for public employees
+in Thu Duc city.
+
+CERTIFICATE
+
+Software Development Lifecycle
+
+https://coursera.org/share/26a24c71 4e5cf6931 bb6ce348aa
+1f814
+
+CertNexus Certified Ethical Emerging Technologist
+
+https://coursera.org/share/022d662e00ce73b6a02554df23
+318cb5
+
+Object Oriented Programming in Java
+
+https://coursera.org/share/be84189b5851 9f95eeb3ea7eba3
+72fdd
