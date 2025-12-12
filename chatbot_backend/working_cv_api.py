@@ -51,7 +51,9 @@ DB_NAME = "CVProject"
 print("🔗 Connecting to MongoDB...")
 mongo_client = MongoClient(MONGO_ATLAS_URI)
 db = mongo_client[DB_NAME]
-jobs_collection = db["jobs"]
+# Point to blog database which has jobs
+blog_db = mongo_client["blog"]
+jobs_collection = blog_db["jobs"]
 cvs_collection = db["cvs"]
 users_collection = db["users"]
 
@@ -59,16 +61,46 @@ print("✅ Connected to MongoDB successfully")
 
 @app.get("/")
 async def root():
-    return {"status": "Working CV API with Real Database", "time": datetime.utcnow().isoformat()}
+    return {"status": "Working CV API with Real Database", "time": datetime.now(timezone.utc).isoformat()}
 
 @app.get("/health")
 async def health_check():
     try:
         # Test database connection
         db.command("ping")
-        return {"status": "ok", "time": datetime.utcnow().isoformat(), "database": "connected"}
+        return {"status": "ok", "time": datetime.now(timezone.utc).isoformat(), "database": "connected"}
     except Exception as e:
-        return {"status": "error", "time": datetime.utcnow().isoformat(), "database": "disconnected", "error": str(e)}
+        return {"status": "error", "time": datetime.now(timezone.utc).isoformat(), "database": "disconnected", "error": str(e)}
+
+@app.get("/debug/all")
+async def debug_all():
+    """Debug endpoint to see all databases and collections"""
+    try:
+        client = mongo_client
+        db_list = client.list_database_names()
+        
+        result = {"databases": {}}
+        
+        for db_name in db_list:
+            if db_name.startswith("admin") or db_name.startswith("config") or db_name.startswith("local"):
+                continue
+                
+            db = client[db_name]
+            collections = db.list_collection_names()
+            
+            result["databases"][db_name] = {
+                "collections": {},
+                "total_collections": len(collections)
+            }
+            
+            for collection_name in collections:
+                collection = db[collection_name]
+                count = collection.count_documents({})
+                result["databases"][db_name]["collections"][collection_name] = count
+                
+        return result
+    except Exception as e:
+        return {"error": str(e)}
 
 @app.get("/debug/jobs")
 async def debug_jobs():
@@ -237,6 +269,12 @@ def analyze_cv_content(cv_content: str, filename: str, file_size: int, file_type
 
     # Overall assessment dựa trên phân tích thực tế
     overall_status, overall_message, grade = assess_cv_quality(analysis, completeness_score, strengths, weaknesses)
+    
+    # Calculate final score for response
+    strength_score = len(strengths) * 15
+    weakness_penalty = len(weaknesses) * 5
+    baseline_score = 40
+    final_score = min(100, max(0, baseline_score + completeness_score + strength_score - weakness_penalty))
 
     # Statistics
     stats = {
@@ -253,7 +291,7 @@ def analyze_cv_content(cv_content: str, filename: str, file_size: int, file_type
     return {
         "overall_assessment": {
             "status": overall_status,
-            "score": completeness_score,
+            "score": final_score,
             "message": overall_message,
             "grade": grade
         },
@@ -436,18 +474,41 @@ def determine_education_level(education_found: list) -> str:
         return 'Không xác định'
 
 def estimate_experience_years(cv_content: str) -> int:
-    """Ước tính số năm kinh nghiệm"""
-    # Tìm các mốc thời gian
-    year_matches = re.findall(r'20\d{2}', cv_content)
-    if len(year_matches) >= 2:
-        try:
-            years = sorted([int(year) for year in year_matches])
-            latest_year = years[-1]
-            earliest_year = years[0]
-            return min(latest_year - earliest_year, 10)  # Max 10 năm
-        except:
-            return 0
-    return 0
+    """Ước tính số năm kinh nghiệm làm việc thực tế"""
+    # Chỉ đếm kinh nghiệm làm việc, không tính thời gian học
+    work_keywords = [
+        'intern', 'internship', 'work', 'job', 'employment', 'position',
+        'developer', 'engineer', 'analyst', 'manager', 'specialist',
+        'full-time', 'part-time', 'contract', 'freelance'
+    ]
+    
+    # Tìm các mốc thời gian liên quan đến làm việc
+    lines = cv_content.lower().split('\n')
+    total_months = 0
+    
+    for line in lines:
+        # Kiểm tra nếu dòng chứa từ khóa về công việc
+        if any(keyword in line for keyword in work_keywords):
+            # Tìm các khoảng thời gian trong dòng
+            duration_matches = re.findall(r'(\d{1,2}/\d{4})\s*-\s*(\d{1,2}/\d{4}|present)', line)
+            for start, end in duration_matches:
+                try:
+                    start_month, start_year = map(int, start.split('/'))
+                    if end.lower() == 'present':
+                        end_month, end_year = 12, 2025  # Giả present là tháng 12/2025
+                    else:
+                        end_month, end_year = map(int, end.split('/'))
+                    
+                    # Tính số tháng
+                    months = (end_year - start_year) * 12 + (end_month - start_month)
+                    if months > 0 and months <= 60:  # Giới hạn 5 năm cho mỗi vị trí
+                        total_months += months
+                except:
+                    continue
+    
+    # Chuyển đổi tháng sang năm (làm tròn xuống)
+    years = total_months // 12
+    return min(years, 10)  # Max 10 năm
 
 def calculate_completeness_score(analysis: dict) -> int:
     """Tính điểm hoàn thiện CV"""
@@ -546,15 +607,20 @@ def create_detailed_feedback(analysis: dict, strengths: list, weaknesses: list) 
 
 def assess_cv_quality(analysis: dict, completeness_score: int, strengths: list, weaknesses: list) -> tuple:
     """Đánh giá chất lượng CV thực tế"""
-    strength_score = len(strengths) * 10
-    weakness_penalty = len(weaknesses) * 8
-    final_score = min(100, max(0, completeness_score + strength_score - weakness_penalty))
+    strength_score = len(strengths) * 15  # Increased from 10 to 15
+    weakness_penalty = len(weaknesses) * 5  # Reduced from 8 to 5
+    
+    # Add minimum baseline score of 40 for having uploaded a CV
+    baseline_score = 40
+    
+    final_score = min(100, max(0, baseline_score + completeness_score + strength_score - weakness_penalty))
 
-    if final_score >= 85:
+    # Adjusted thresholds to be more lenient
+    if final_score >= 80:
         return "excellent", "CV của bạn rất tốt! Có nhiều điểm mạnh và ít điểm yếu. Sẵn sàng cho vị trí Mid-level.", "A"
-    elif final_score >= 70:
+    elif final_score >= 60:
         return "good", f"CV khá tốt với {len(strengths)} điểm mạnh. Cần cải thiện {len(weaknesses)} điểm yếu để competitive hơn.", "B"
-    elif final_score >= 55:
+    elif final_score >= 40:
         return "fair", f"CV cần cải thiện thêm. Có {len(strengths)} điểm mạnh nhưng còn {len(weaknesses)} điểm yếu cần khắc phục.", "C"
     else:
         return "poor", f"CV cần cải thiện nhiều. Cần tập trung khắc phục {len(weaknesses)} điểm yếu quan trọng.", "D"
@@ -743,7 +809,24 @@ async def upload_resume(username: str = Form(...), file: UploadFile = File(...))
     try:
         # Read file content
         file_content = await file.read()
-        processed_text = f"Processed {file.filename} ({len(file_content)} bytes)"
+        
+        # Save file temporarily for processing
+        temp_file_path = f"temp_{file.filename}"
+        with open(temp_file_path, "wb") as temp_file:
+            temp_file.write(file_content)
+        
+        # Extract text using the pipeline
+        try:
+            from services.ingestion.pipeline import process_resume
+            processed_text, parsed_output = process_resume(temp_file_path)
+        except Exception as e:
+            print(f"Text extraction failed: {str(e)}")
+            # Fallback to basic processing
+            processed_text = f"Processed {file.filename} ({len(file_content)} bytes)"
+            parsed_output = {"technical_skills": [], "job_titles": [], "industries": [], "level": "unknown"}
+        
+        # Clean up temp file
+        os.remove(temp_file_path)
 
         # Store in database
         doc = {
@@ -751,6 +834,7 @@ async def upload_resume(username: str = Form(...), file: UploadFile = File(...))
             "uploaded_at": datetime.utcnow(),
             "filename": file.filename,
             "processed_text": processed_text,
+            "parsed_output": parsed_output,
             "file_size": file_size,
             "file_type": file_ext
         }
@@ -760,9 +844,11 @@ async def upload_resume(username: str = Form(...), file: UploadFile = File(...))
         return {
             "username": username,
             "saved": True,
-            "message": f"Resume '{file.filename}' uploaded successfully.",
+            "message": f"Resume '{file.filename}' uploaded and processed successfully.",
             "filename": file.filename,
-            "size": file_size
+            "size": file_size,
+            "extracted_skills": len(parsed_output.get("technical_skills", [])),
+            "text_length": len(processed_text)
         }
 
     except Exception as e:
