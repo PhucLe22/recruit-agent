@@ -18,7 +18,7 @@ _GEMINI_INIT = set()
 
 # Ollama configuration
 OLLAMA_API_BASE = "http://localhost:11434/v1"
-OLLAMA_DEFAULT_MODEL = "llama3.1:8b"
+OLLAMA_DEFAULT_MODEL = "qwen2.5:3b"
 
 def get_ollama_response(prompt: str, model: str = None, system_prompt: str = None) -> str:
     """
@@ -54,7 +54,7 @@ def get_ollama_response(prompt: str, model: str = None, system_prompt: str = Non
             url,
             headers={"Content-Type": "application/json"},
             data=json.dumps(data),
-            timeout=300  # 5 minute timeout
+            timeout=600  # 5 minute timeout
         )
         response.raise_for_status()
         result = response.json()

@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
-MODEL_NAME = "ollama"
+MODEL_NAME = "qwen2.5:3b"
 
 # ---------- Pydantic responses ----------
 class CreateUserResp(BaseModel):

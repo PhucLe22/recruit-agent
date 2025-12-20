@@ -1,56 +1,100 @@
-First Last
+LE NGUYEN THIEN PHUC
+Software Developer
 
-Fashion Design Director
-Birmingham, Alabama + +1-234-456-789 + professionalemail@resumeworded.com + linkedin.comvin/username
+A 033-710-4485
 
-WORK EXPERIENCE
+6 phucint22@gmail com
 
-Resume Worded, New York, NY 09/2015 ~ Present
-Fashion house with 50+ employees and $100m+ annual revenue
+@ Binh Than, Ho Chi Minh City
 
-Fashion Design Director
+Q sithub.com/Phucte22
 
-‘* Coordinated the design of a $19M retail business across mukiple brends for RW and quedrupled 2021
-sales while partnering with leading merchandising firms,
+ linkedin.com/in/thienphuc2201
 
-‘© Developed the children's shirts and trousers line into the second best-selling category countrywide;
-increased quarterly revenue from $511M to $110.5M within one year on the job,
+@ GIGI THIEU BAN THAN
 
-«Performed business research throughout France, and Amsterdam, visiting 20+ fabric mills, 17+ print
-facilities, and 100 fectories to leam about quality production,
+T6i [8 sinh vign nm cuéi nganh Kj thuat Phin mm, yéu thich xdy dung va phat trién hé théng, Téi luén chil déng hoc hai, tiép
+thu nhanh céng nghé mdi va c6 thé lam viéc hiéu qué déc lép hoc trong nhém,
 
-Conceived and launched a brand identity for RW fashion house ‘resumeworded com by attaining an 89%
-increase in site traffic end a $50M boost in sales within one year of taking charge
+@ Muc TIEU NGHE NGHIEP
 
-Polyhire, London, United Kingdom 10/2012 - 08/2015
-NYSE listed designer that soecializes in accessories, hendbags and ready to wear leather products
-Senior Designer
-Implemented design work from concept to delivery by collaborating with 10+ creative directors, 5+ art
-directors, and 30+ copywriters to deliver marketing pitches for 50 new businesses
-Created marketing campaigns for 16+ lookbooks, 31+ website updates, 15 monthly newsletters, and
-collection launches in the first month
-«Developed advertising collaterals for website design and development, branding and styles guide,
-merketing content, and social media posts for 100+ HNIs.
+Téi mong muéin tim kiém co héi thuc tap é vi tri Backend Developer dé dude va cham vai céc du an thuc chién, tich lay kinh
+inghiém thuc té va phat trién ky nang chuyén mén. Bing thai ky vong cé thé gn bé Iau dai va tre thanh nhan vién chinh thule
+rnéu phi hgp véi dinh huéng va méi truding lim viéc cia céng ty.
 
-Growthsi, London, United Kingdon 01/2010 - 09/2012
-Designs and manufactures high-end clothes, footwear, and fragrances
-Fashion Merchandiser
-‘© Coordinated window displays for 24+ retail stores by planning interior displays and promotions; attracted
-100+ daily walk-in customers.
-© Reduced 37% of inventory through category management, creative merchandising ideas, stock balancing,
-and creating purchesing partnerships with 65+ external agencies.
-© Supervised operations thet drove top line sales profitability of 16+ operating units and generated monthly
-sales of $$5500 in the first yeer.
+Q KY NANG
 
-Art Assistant, ABC Company, London, United Kingdom 11/2008 ~ 12/2009
-Interactive Designer, XYZ Company, London, United Kingdom 0672005 - 10/2008
-EDUCATION
+v Ngén ngit lap trint
+Java, Javascript, C#, C++
 
-Resume Worded University, New York, NY 06/2005,
+v Framewor!
+Nodejs, Spring Boot, Spring MVC, Servlet MVC, Hibernate
 
-Master of Fine Arts — Fashion Design
+v Cosé dir
+MySQL, SQL Server, MongoDB
 
-SKILLS
+v Khae:
+Git, thinh thao Tiéng Anh, Postman, Unit Test (Mocha/Chai)
 
-Hard Skills: Fashicn Styling (Advanced), Trend Forecasting (Experienced), Fashion illustration, Visual Merchandising
-Techniques’ Crective Direction, Brand Development, Trend Analysis, Inventory Management, Public Relations
+mm DUAN
+
+UteDemy-project - Website ban khéa hoc
+
+20/2/2025 - 29/5/2025
+
+Céng nghé sit dung: Java, Servlet, JPA, MySQL
+
++ Xéy dung nn tang hoc truc tuyén toan dign tucng ty Udemy véi hé théing quan ly khéa hoc.
+‘+ Trién khai hé théng xéc thuc va phan quyén cho hoc vién va ging vién.
+
+‘+ Xéy dung chifc nang tim kiém khéa hoc va quan li danh muc
+
+Thanh vin: 5
+
+NewsWeb - Website doc tin tire
+
+1/5/2025 - 15/6/2025
+
+Céng nghé str dung: Java, Servlet, JPA, MySQL
+
+‘+ Phat trién website tin tii toan dién véi giao dién than thién va thiét ké responsive
+
+‘+ Trién khai hé théng phan loai va loc tin tic dé t6 chute n6i dung t6t hon,
+
++ Xéy dung chiic nang tim kiém manh mé véi cc ty chon loc nang cao theo danh muc, ngay va tir khéa
+‘+ Xéy dung trang quan tri cho quan ly bai viét, phan quyén, va kiém duyét néi dung higu qua
+
+Thanh vién: 2
+
+Nodels - Website tuyén dung (tich hgp Al)
+
+5/2025 - Hién tai (Bang phat trién)
+
+Céng nghé: Node js, Expressjs, MongoDB, Python (Tesseract OCR, LangChain, Ollama -tich hap Al)
+
+‘+ Thiét ké va phat trién API backend bang Nodejs & Express js dé xil ly ding bai tuyén dung, quan ly hd so ngudi ding
+‘+ Tich hop Al xi ly CV bang Python (Tesseract OCR, LangChain) va két néi vdi backend qua API néi bé.
+
++ Thuc hién xt ly va luu tri dot igu MongoDB cho théng tin ting vién va doanh nghiép,
+
+« Trién khai xéc thc nguéi ding JWT), phan quyén nha tuyén dung va nguti tim vie
+
+‘+ Tham gia thiét ké RESTful API va céu triic thu muc theo mé inh MVC.
+
+Thanh vin: 3
+
+@ Hoc VAN
+
+ai hoc Su Pham Kj Thuat TRHCM
+09/2022 - 2026
+
+Chuyén nganh: Céng nghé phn mém
+TOEIC: 665
+
++ ADDITIONAL SKILLS
+
+@ Communication skills
+@ Problem-solving skills
+@ Adaptability skils
+
+@ Leadership skills

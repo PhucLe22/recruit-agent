@@ -199,12 +199,27 @@ def scrape_jobs(page, params, username: str):
 
 def retrieve_linkedin_jobs(headless, params_list):
     LINKEDIN_EMAIL = os.getenv("LINKEDIN_EMAIL")
-    if not LINKEDIN_EMAIL:
-        raise ValueError("LINKEDIN_EMAIL not found in environment variables. Please set it in your .env file.")
-
     LINKEDIN_PASSWORD = os.getenv("LINKEDIN_PASSWORD")
-    if not LINKEDIN_PASSWORD:
-        raise ValueError("LINKEDIN_PASSWORD not found in environment variables. Please set it in your .env file.")
+    
+    # Return mock data if credentials are missing
+    if not LINKEDIN_EMAIL or not LINKEDIN_PASSWORD:
+        logger.warning("LinkedIn credentials not found. Returning mock job data.")
+        return {
+            "jobs": [
+                {
+                    "job_id": f"mock_job_{i}",
+                    "title": f"Software Engineer {i}",
+                    "companyName": f"Tech Company {i}",
+                    "location": "Ho Chi Minh City",
+                    "posted_date": "2025-12-20",
+                    "job_link": "https://linkedin.com/jobs/view/mock",
+                    "slug": f"software-engineer-{i}-mock-{datetime.now().strftime('%Y%m%d')}"
+                }
+                for i in range(1, 6)
+            ],
+            "count": 5,
+            "message": "LinkedIn credentials not configured. Showing mock data."
+        }
 
     all_jobs = {"jobs": [], "count": 0}
 
