@@ -212,7 +212,9 @@ async def upload_resume(
             "username": username,
             "saved": True,
             "inserted_id": str(result.upserted_id) if result.upserted_id else None,
-            "message": "Resume uploaded successfully"
+            "message": "Resume uploaded successfully",
+            "file_path": file_path,
+            "filename": filename
         }
         
     except Exception as e:
