@@ -178,13 +178,10 @@ async def upload_resume(
     """Upload and process resume"""
     validate_file(file)
     
-    # Create user if not exists
-    if not users_collection.find_one({"username": username}):
-        users_collection.insert_one({
-            "username": username,
-            "email": f"{username}@cvproject.com",
-            "created_at": datetime.utcnow()
-        })
+    # Check if user exists in database
+    user = users_collection.find_one({"username": username})
+    if not user:
+        raise HTTPException(status_code=404, detail=f"User '{username}' not found. Please create an account first.")
     
     # Save file
     timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
@@ -201,6 +198,7 @@ async def upload_resume(
             {"username": username},
             {"$set": {
                 "username": username,
+                "user_id": username,
                 "uploaded_at": datetime.utcnow(),
                 "processed_text": processed_text,
                 "parsed_output": parsed_output

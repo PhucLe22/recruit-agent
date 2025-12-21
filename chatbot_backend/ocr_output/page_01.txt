@@ -1,100 +1,120 @@
-LE NGUYEN THIEN PHUC
-Software Developer
+First Last
 
-A 033-710-4485
+Backend Developer
 
-6 phucint22@gmail com
+WORK EXPERIENCE
 
-@ Binh Than, Ho Chi Minh City
+Resume Worded, | ondon, United Kingdom
+Education technology startup with 50+ employees and $100m+ annual revenue
 
-Q sithub.com/Phucte22
+Backend Developer 08/2021 ~ Present
 
- linkedin.com/in/thienphuc2201
+‘* Developed tools to automate deployment processes using Jenkins Pipelines
+and Kuberetes, reducing deployment time from 24 hours to 45 minutes.
 
-@ GIGI THIEU BAN THAN
+‘+ Collaborated with a team of 10+ developers to develop an e-commerce
+platform that could scale up to 1M visitors.
 
-T6i [8 sinh vign nm cuéi nganh Kj thuat Phin mm, yéu thich xdy dung va phat trién hé théng, Téi luén chil déng hoc hai, tiép
-thu nhanh céng nghé mdi va c6 thé lam viéc hiéu qué déc lép hoc trong nhém,
+© Designed APIs to support the development of 20+ new web features, course
+management systems (CMS), and Student Information Systems (SIS).
 
-@ Muc TIEU NGHE NGHIEP
+‘© Created a microservices-based architecture with Nodes, Kubernetes, Docker,
+and MySQL for an online education platform that serves SOOK daily users.
 
-Téi mong muéin tim kiém co héi thuc tap é vi tri Backend Developer dé dude va cham vai céc du an thuc chién, tich lay kinh
-inghiém thuc té va phat trién ky nang chuyén mén. Bing thai ky vong cé thé gn bé Iau dai va tre thanh nhan vién chinh thule
-rnéu phi hgp véi dinh huéng va méi truding lim viéc cia céng ty.
+Polyhire, London, United Kingdom
+NYSF-listed reeruitment and employer branding company
 
-Q KY NANG
+UI Developer 10/2019 - 07/2021
 
-v Ngén ngit lap trint
-Java, Javascript, C#, C++
+* Designed 20+ interactive User Interface (Ul) applications using HTMLS, CSS:
+Angular 4/2, NodeJS, jQuery, and JSON.
 
-v Framewor!
-Nodejs, Spring Boot, Spring MVC, Servlet MVC, Hibernate
+‘* Gverhauled the pop-up screeis and dropdown menus on 50+ web pages,
+making the U! 100% functional.
 
-v Cosé dir
-MySQL, SQL Server, MongoDB
+© Developed 10+ web applications using modern JavaScript ES6 features and
+frameworks.
 
-v Khae:
-Git, thinh thao Tiéng Anh, Postman, Unit Test (Mocha/Chai)
+© Created server-side JavaScriat codes to build 120+ web forms and simulate
+processes for web applications, page navigation, and form validation,
 
-mm DUAN
+Growthsi, London, United Kingdom & Barcelona, Spain
+Digital marketing agency focusing on search engine marketing (SEM).
 
-UteDemy-project - Website ban khéa hoc
+Web Content Editor 11/2018 - 09/2019
 
-20/2/2025 - 29/5/2025
+© Contributed to developing a next-generation website for an international
+company conducting business in 30+ countries.
 
-Céng nghé sit dung: Java, Servlet, JPA, MySQL
+© Improved online search-ranking accuracy by optimizing 20+ key content
+pages for SEO purposes.
 
-+ Xéy dung nn tang hoc truc tuyén toan dign tucng ty Udemy véi hé théing quan ly khéa hoc.
-‘+ Trién khai hé théng xéc thuc va phan quyén cho hoc vién va ging vién.
+* Editec web content pieces supporting Growthsi marketing initiatives by
+ensuring 97% consistency with the brand's voice and tone.
 
-‘+ Xéy dung chifc nang tim kiém khéa hoc va quan li danh muc
+© Enhanced the company's search rankings through onsite optimization and
+content development, increasing website traffic by 75%.
 
-Thanh vin: 5
+PREVIOUS EXPERIENCE
+IT Support Engineer, ABC Company, London, UK. 06/2017 - 10/2018
+Programmer, XYZ Company, New York, USA 01/2016 - 05/2017
 
-NewsWeb - Website doc tin tire
+UI Designer(Internship), ABC, New York, USA 07/2014 ~ 12/2015
 
-1/5/2025 - 15/6/2025
+CONTACT
 
-Céng nghé str dung: Java, Servlet, JPA, MySQL
++ Worcester, United Kingdom
++ #44 1234567800
++ firstlast@gmail.com
 
-‘+ Phat trién website tin tii toan dién véi giao dién than thién va thiét ké responsive
+SKILLS
 
-‘+ Trién khai hé théng phan loai va loc tin tic dé t6 chute n6i dung t6t hon,
+Hard Skil
++ Debugging
 
-+ Xéy dung chiic nang tim kiém manh mé véi cc ty chon loc nang cao theo danh muc, ngay va tir khéa
-‘+ Xéy dung trang quan tri cho quan ly bai viét, phan quyén, va kiém duyét néi dung higu qua
++ Server Handing
++ Visual Edting
 
-Thanh vién: 2
++ Data Modeling
 
-Nodels - Website tuyén dung (tich hgp Al)
++ Wirefreming
 
-5/2025 - Hién tai (Bang phat trién)
++ Troubleshooting
 
-Céng nghé: Node js, Expressjs, MongoDB, Python (Tesseract OCR, LangChain, Ollama -tich hap Al)
+Techniques
++ APL integration
++ Technical Analysis
++ UYUX Design
 
-‘+ Thiét ké va phat trién API backend bang Nodejs & Express js dé xil ly ding bai tuyén dung, quan ly hd so ngudi ding
-‘+ Tich hop Al xi ly CV bang Python (Tesseract OCR, LangChain) va két néi vdi backend qua API néi bé.
+Tools and Software:
++ Sab
 
-+ Thuc hién xt ly va luu tri dot igu MongoDB cho théng tin ting vién va doanh nghiép,
++ Java
 
-« Trién khai xéc thc nguéi ding JWT), phan quyén nha tuyén dung va nguti tim vie
+Ost
 
-‘+ Tham gia thiét ké RESTful API va céu triic thu muc theo mé inh MVC.
+HTML
 
-Thanh vin: 3
+Languages:
++ English (Native)
 
-@ Hoc VAN
++ Romanian (Native)
 
-ai hoc Su Pham Kj Thuat TRHCM
-09/2022 - 2026
++ Spanish (Conversational)
 
-Chuyén nganh: Céng nghé phn mém
-TOEIC: 665
+EDUCATION
 
-+ ADDITIONAL SKILLS
+University of New York
+Associate of Science
+Computer Science
 
-@ Communication skills
-@ Problem-solving skills
-@ Adaptability skils
+New York City, New York
+10/2011 -06/2014
 
-@ Leadership skills
+OTHER
+
++ Certified Java Programmer
+(2021)
+
++ Certificate Program in Text
+‘And Web Analytics (2019)
