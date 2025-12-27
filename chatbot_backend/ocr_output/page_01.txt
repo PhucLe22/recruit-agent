@@ -1,120 +1,48 @@
-First Last
+Le Nguyen Thien Phuc
 
-Backend Developer
+Phone: 033-710-4445 | Email: phucint22@gmail.com
+Location: Binh Thanh, Ho Chi Minh City
 
-WORK EXPERIENCE
+GitHub: github.com/PhucLe22 | LinkedIn: linkedin.com/in/thienphuc2201,
+Profile
 
-Resume Worded, | ondon, United Kingdom
-Education technology startup with 50+ employees and $100m+ annual revenue
+1am a final-year Software Engineering student with a strong passion for backend development and building scalable
+systems. | enjoy solving problems and writing clean, maintainable code using Java and Node/s. With a fast learning ability
+and attention to detail, | can work effectively both independently and within a team, and | am eager to contribute to real-world
+projects.
 
-Backend Developer 08/2021 ~ Present
+Career Objective
 
-‘* Developed tools to automate deployment processes using Jenkins Pipelines
-and Kuberetes, reducing deployment time from 24 hours to 45 minutes.
+am looking for a full-time backend internship where | can apply my skills in Java or Node.js, gain practical experience, and
+contribute to the company's goals. | aim to learn from real projects and teamwork while preparing myself for a full-time
+position after the internship if there is a good fit.
 
-‘+ Collaborated with a team of 10+ developers to develop an e-commerce
-platform that could scale up to 1M visitors.
+Skills
 
-© Designed APIs to support the development of 20+ new web features, course
-management systems (CMS), and Student Information Systems (SIS).
++ Programming: JavaScript (Node js), Java, C# (basic)
 
-‘© Created a microservices-based architecture with Nodes, Kubernetes, Docker,
-and MySQL for an online education platform that serves SOOK daily users.
++ Frameworks: Node.js, Express.js, Spring Boot, Spring MVC, Servlet MVC, Hibernate
++ Databases: MongoDB, MySQL, SQL Server
 
-Polyhire, London, United Kingdom
-NYSF-listed reeruitment and employer branding company
++ Concepts: OOP, Asynchronous Programming, RESTful APIs, HTTP/HTTPS,
 
-UI Developer 10/2019 - 07/2021
++ Version Control: Git (feature branching, pull requests, conflict resolution)
 
-* Designed 20+ interactive User Interface (Ul) applications using HTMLS, CSS:
-Angular 4/2, NodeJS, jQuery, and JSON.
++ Other: API design and MVC structure for clean, maintainable code
+Projects
 
-‘* Gverhauled the pop-up screeis and dropdown menus on 50+ web pages,
-making the U! 100% functional.
+NodeJs - Recruitment Website (Al Integrated)
 
-© Developed 10+ web applications using modern JavaScript ES6 features and
-frameworks.
+Duration: 05/2025 - Present
+Technologies: Node,js, Express.js, MongoDB, Python (Tesseract OCR, LangChain, Ollama Al)
 
-© Created server-side JavaScriat codes to build 120+ web forms and simulate
-processes for web applications, page navigation, and form validation,
++ Developed backend RESTIul APIs with Node,js and Expressjs for job postings and user management.
++ Integrated Al-based CV processing with Python OCR and LangChain, connected via internal APIs.
 
-Growthsi, London, United Kingdom & Barcelona, Spain
-Digital marketing agency focusing on search engine marketing (SEM).
++ Implemented JWT authentication, user role management, and secure endpoints.
 
-Web Content Editor 11/2018 - 09/2019
++ Applied asynchronous programming for file processing and data storage in MongoDB.
 
-© Contributed to developing a next-generation website for an international
-company conducting business in 30+ countries.
++ Deployed on cloud platforms (Heroku, Render) for testing and collaborative development.
 
-© Improved online search-ranking accuracy by optimizing 20+ key content
-pages for SEO purposes.
-
-* Editec web content pieces supporting Growthsi marketing initiatives by
-ensuring 97% consistency with the brand's voice and tone.
-
-© Enhanced the company's search rankings through onsite optimization and
-content development, increasing website traffic by 75%.
-
-PREVIOUS EXPERIENCE
-IT Support Engineer, ABC Company, London, UK. 06/2017 - 10/2018
-Programmer, XYZ Company, New York, USA 01/2016 - 05/2017
-
-UI Designer(Internship), ABC, New York, USA 07/2014 ~ 12/2015
-
-CONTACT
-
-+ Worcester, United Kingdom
-+ #44 1234567800
-+ firstlast@gmail.com
-
-SKILLS
-
-Hard Skil
-+ Debugging
-
-+ Server Handing
-+ Visual Edting
-
-+ Data Modeling
-
-+ Wirefreming
-
-+ Troubleshooting
-
-Techniques
-+ APL integration
-+ Technical Analysis
-+ UYUX Design
-
-Tools and Software:
-+ Sab
-
-+ Java
-
-Ost
-
-HTML
-
-Languages:
-+ English (Native)
-
-+ Romanian (Native)
-
-+ Spanish (Conversational)
-
-EDUCATION
-
-University of New York
-Associate of Science
-Computer Science
-
-New York City, New York
-10/2011 -06/2014
-
-OTHER
-
-+ Certified Java Programmer
-(2021)
-
-+ Certificate Program in Text
-‘And Web Analytics (2019)
+UteDemy - Online Course Selling Website

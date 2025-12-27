@@ -301,7 +301,8 @@ async def jobs_suggestion(username: str):
         # Get and match jobs
         all_jobs = list(jobs_collection.find({}, {
             "_id": 1, "title": 1, "companyName": 1, "company": 1,
-            "required_skills": 1, "preferred_skills": 1
+            "required_skills": 1, "preferred_skills": 1, "slug": 1,
+            "city": 1, "location": 1, "type": 1
         }).limit(50))
         
         matched_jobs = []
@@ -312,6 +313,9 @@ async def jobs_suggestion(username: str):
                     "id": str(job["_id"]),
                     "title": job.get("title", "No Title"),
                     "company": job.get("companyName", job.get("company", "N/A")),
+                    "slug": job.get("slug", f"job-{job['_id']}"),
+                    "location": job.get("city", job.get("location", "Location")),
+                    "type": job.get("type", "Full-time"),
                     "match_percentage": match_pct,
                     "relevance": "high" if match_pct >= 70 else "medium" if match_pct >= 50 else "low"
                 })
