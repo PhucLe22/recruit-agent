@@ -215,7 +215,13 @@ async def upload_resume(
             "filename": filename
         }
         
+    except ValueError as e:
+        # Handle validation errors (invalid PDF, empty file, etc.)
+        logger.error(f"Validation error: {e}")
+        os.remove(file_path) if os.path.exists(file_path) else None
+        raise HTTPException(400, f"File validation failed: {str(e)}")
     except Exception as e:
+        # Handle other processing errors
         logger.error(f"Upload error: {e}")
         os.remove(file_path) if os.path.exists(file_path) else None
         raise HTTPException(500, f"Upload failed: {str(e)}")
