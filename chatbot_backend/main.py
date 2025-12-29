@@ -123,24 +123,82 @@ def get_google_credentials():
     return creds
 
 def calculate_job_match(job: dict, skills: set, titles: list) -> int:
-    """Calculate match percentage for a job"""
+    """Calculate match percentage for a job with enhanced matching"""
     score = 0
     
-    # Title match (40%)
+    # Title match (30%)
     job_title = job.get('title', '').lower()
-    if any(t.lower() in job_title for t in titles):
-        score += 40
+    title_match = any(t.lower() in job_title for t in titles)
+    if title_match:
+        score += 30
     
-    # Skills match (50%)
-    required_skills = set(s.lower() for s in job.get('required_skills', []))
-    if required_skills:
-        matched = len(skills & required_skills)
-        score += (matched / len(required_skills)) * 50
+    # Enhanced Skills match (50%)
+    all_job_skills = set()
     
-    # Base score (10%)
-    score += 10
+    # Check multiple skill fields
+    skill_fields = ['required_skills', 'skills', 'technique', 'preferred_skills']
+    for field in skill_fields:
+        if field in job and job[field]:
+            if isinstance(job[field], list):
+                all_job_skills.update(s.lower().strip() for s in job[field] if s)
+            elif isinstance(job[field], str):
+                all_job_skills.update(s.strip().lower() for s in job[field].split(',') if s.strip())
+    
+    # Also check description and requirements for skill mentions
+    text_fields = [job.get('description', ''), job.get('requirements', '')]
+    for text in text_fields:
+        if text:
+            text_lower = text.lower()
+            # Find mentioned skills in text
+            for skill in skills:
+                if skill in text_lower:
+                    all_job_skills.add(skill)
+    
+    if all_job_skills:
+        matched_skills = skills & all_job_skills
+        matched_count = len(matched_skills)
+        skill_ratio = matched_count / max(len(all_job_skills), 1)
+        score += skill_ratio * 50
+    
+    # Experience level bonus (15%)
+    exp_levels = {'entry': 1, 'mid': 2, 'senior': 3, 'executive': 4}
+    job_exp = job.get('experience_level', '').lower()
+    if job_exp in exp_levels:
+        score += 15  # Bonus for having experience level info
+    
+    # Industry/location bonus (5%)
+    if job.get('industries') or job.get('location'):
+        score += 5
     
     return min(100, int(score))
+
+def _get_matched_skills(job: dict, resume_skills: set) -> list:
+    """Extract which skills from resume matched the job"""
+    matched = []
+    
+    # Check all job skill fields
+    all_job_skills = set()
+    skill_fields = ['required_skills', 'skills', 'technique', 'preferred_skills']
+    
+    for field in skill_fields:
+        if field in job and job[field]:
+            if isinstance(job[field], list):
+                all_job_skills.update(s.lower().strip() for s in job[field] if s)
+            elif isinstance(job[field], str):
+                all_job_skills.update(s.strip().lower() for s in job[field].split(',') if s.strip())
+    
+    # Check text fields too
+    text_fields = [job.get('description', ''), job.get('requirements', '')]
+    for text in text_fields:
+        if text:
+            text_lower = text.lower()
+            for skill in resume_skills:
+                if skill in text_lower:
+                    all_job_skills.add(skill)
+    
+    # Find intersection
+    matched = list(resume_skills & all_job_skills)
+    return matched
 
 # ==================== USER ENDPOINTS ====================
 @app.post("/create_user")
@@ -304,17 +362,51 @@ async def jobs_suggestion(username: str):
         skills = set(s.lower() for s in job_suggestions.get("extracted_data", {}).get("skills", []))
         titles = job_suggestions.get("extracted_data", {}).get("job_titles", [])
         
-        # Get and match jobs
-        all_jobs = list(jobs_collection.find({}, {
+        # Enhanced job query - check more fields and be more inclusive
+        query_conditions = []
+        
+        # 1. Skills matching in multiple fields
+        if skills:
+            skill_conditions = []
+            for skill in skills:
+                skill_conditions.extend([
+                    {"required_skills": {"$regex": skill, "$options": "i"}},
+                    {"skills": {"$regex": skill, "$options": "i"}},
+                    {"technique": {"$regex": skill, "$options": "i"}},
+                    {"description": {"$regex": skill, "$options": "i"}},
+                    {"requirements": {"$regex": skill, "$options": "i"}}
+                ])
+            if skill_conditions:
+                query_conditions.append({"$or": skill_conditions})
+        
+        # 2. Title matching
+        if titles:
+            title_conditions = []
+            for title in titles:
+                title_conditions.append({"title": {"$regex": title, "$options": "i"}})
+            if title_conditions:
+                query_conditions.append({"$or": title_conditions})
+        
+        # 3. Fallback - get recent jobs if no specific matches
+        if not query_conditions:
+            query_conditions.append({})  # Match all
+        
+        # Combine conditions with OR for broader matching
+        final_query = {"$or": query_conditions} if len(query_conditions) > 1 else query_conditions[0]
+        
+        # Get more jobs for better matching
+        all_jobs = list(jobs_collection.find(final_query, {
             "_id": 1, "title": 1, "companyName": 1, "company": 1,
-            "required_skills": 1, "preferred_skills": 1, "slug": 1,
-            "city": 1, "location": 1, "type": 1
-        }).limit(50))
+            "required_skills": 1, "preferred_skills": 1, "skills": 1,
+            "technique": 1, "description": 1, "requirements": 1,
+            "slug": 1, "city": 1, "location": 1, "type": 1,
+            "experience_level": 1, "industries": 1
+        }).limit(100))  # Increased limit for better matching
         
         matched_jobs = []
         for job in all_jobs:
             match_pct = calculate_job_match(job, skills, titles)
-            if match_pct >= 30:  # Only include decent matches
+            if match_pct >= 15:  # Lowered threshold for more matches
                 matched_jobs.append({
                     "id": str(job["_id"]),
                     "title": job.get("title", "No Title"),
@@ -323,30 +415,55 @@ async def jobs_suggestion(username: str):
                     "location": job.get("city", job.get("location", "Location")),
                     "type": job.get("type", "Full-time"),
                     "match_percentage": match_pct,
-                    "relevance": "high" if match_pct >= 70 else "medium" if match_pct >= 50 else "low"
+                    "relevance": "high" if match_pct >= 60 else "medium" if match_pct >= 35 else "low",
+                    "matched_skills": _get_matched_skills(job, skills)
                 })
         
         # Sort by match percentage
         matched_jobs.sort(key=lambda x: x["match_percentage"], reverse=True)
         
+        # If still no matches, get some recent jobs as fallback
+        if not matched_jobs:
+            recent_jobs = list(jobs_collection.find({}, {
+                "_id": 1, "title": 1, "companyName": 1, "company": 1,
+                "slug": 1, "city": 1, "location": 1, "type": 1
+            }).sort("_id", -1).limit(10))
+            
+            for job in recent_jobs:
+                matched_jobs.append({
+                    "id": str(job["_id"]),
+                    "title": job.get("title", "No Title"),
+                    "company": job.get("companyName", job.get("company", "N/A")),
+                    "slug": job.get("slug", f"job-{job['_id']}"),
+                    "location": job.get("city", job.get("location", "Location")),
+                    "type": job.get("type", "Full-time"),
+                    "match_percentage": 20,  # Default low match for fallback
+                    "relevance": "low",
+                    "matched_skills": []
+                })
+        
         return {
-            "matching_jobs": matched_jobs[:20],
+            "matching_jobs": matched_jobs[:30],  # Increased result count
             "total_matches": len(matched_jobs),
             "extracted_data": {
                 "skills": list(skills),
                 "job_titles": titles
-            }
+            },
+            "search_query": final_query  # Debug info
         }
         
     except HTTPException:
         raise
     except Exception as e:
         logger.error(f"Job suggestion error: {e}")
-        return JSONResponse(200, {
-            "matching_jobs": [],
-            "total_matches": 0,
-            "error": str(e)
-        })
+        return JSONResponse(
+            status_code=200,
+            content={
+                "matching_jobs": [],
+                "total_matches": 0,
+                "error": str(e)
+            }
+        )
 
 # ==================== AI APPLICANT MATCHING ENDPOINTS ====================
 
