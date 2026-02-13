@@ -1,0 +1,84 @@
+# Skill categories used for job matching and keyword extraction
+skill_categories:
+  programming:
+    - python
+    - java
+    - javascript
+    - typescript
+    - c++
+    - c#
+    - php
+    - ruby
+    - go
+    - rust
+
+  frontend:
+    - react
+    - vue
+    - angular
+    - html
+    - css
+    - tailwind
+    - next.js
+    - redux
+
+  backend:
+    - node.js
+    - django
+    - flask
+    - express
+    - spring boot
+    - fastapi
+
+  databases:
+    - mongodb
+    - postgresql
+    - mysql
+    - redis
+    - elasticsearch
+
+  cloud:
+    - aws
+    - azure
+    - gcp
+    - docker
+    - kubernetes
+    - terraform
+
+  ai_ml:
+    - tensorflow
+    - pytorch
+    - scikit-learn
+    - pandas
+    - numpy
+
+# Weights for job matching score calculation
+match_weights:
+  title: 0.3
+  skills: 0.4
+  experience: 0.2
+  industry: 0.1
+
+# Industry detection keywords
+industries:
+  technology:
+    - tech
+    - software
+    - it
+    - saas
+    - cloud
+    - ai
+  finance:
+    - finance
+    - banking
+    - fintech
+    - trading
+  healthcare:
+    - healthcare
+    - medical
+    - hospital
+    - clinical
+  ecommerce:
+    - ecommerce
+    - retail
+    - marketplace
